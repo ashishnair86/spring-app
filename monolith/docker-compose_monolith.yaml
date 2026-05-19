@@ -1,0 +1,25 @@
+services:  
+  db:
+   image: mariadb:10.5
+   environment:
+     - MARIADB_ROOT_PASSWORD=redhat
+     - MARIADB_DATABASE=university
+     - MARIADB_USER=univuser
+     - MARIADB_PASSWORD=password
+   volumes:
+     - mariadb_data:/var/lib/mysql
+   ports:
+     - "3306:3306"
+  app:
+   depends_on:
+        - db
+   build: .
+   image: university-monolith:latest
+   environment:
+     - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/university
+     - SPRING_DATASOURCE_USERNAME=univuser
+     - SPRING_DATASOURCE_PASSWORD=password
+   ports:
+     - "8080:8080"
+volumes:
+  mariadb_data:
