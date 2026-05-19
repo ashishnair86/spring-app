@@ -1,0 +1,79 @@
+version: '5.1'
+services:
+  gateway:
+    image: nginx:stable-alpine
+    ports: 
+      - "80:80" 
+    volumes: 
+      - /home/ec2-user/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - auth-service
+  auth-db:
+    image: mariadb:10.5
+    environment:
+      - MARIADB_ROOT_PASSWORD=authroot
+      - MARIADB_DATABASE=authdb
+      - MARIADB_USER=authuser
+      - MARIADB_PASSWORD=authpass
+    volumes:
+      - auth_db_data:/var/lib/mysql
+
+  auth-service:
+    image: auth-service:4.0
+    depends_on:
+      - auth-db
+
+  student-db: 
+   image: mariadb:10.5
+   environment:
+     - MARIADB_ROOT_PASSWORD=redhat
+     - MARIADB_DATABASE=studentdb
+     - MARIADB_USER=studentuser
+     - MARIADB_PASSWORD=studentpass
+   volumes: 
+     - student_db_data:/var/lib/mysql
+  student-service:
+    image: student-service:1.0
+    depends_on: 
+         - student-db
+  course-db:
+    image: mariadb:10.5
+    environment:
+      - MARIADB_ROOT_PASSWORD=redhat
+      - MARIADB_DATABASE=coursedb
+      - MARIADB_USER=courseuser
+      - MARIADB_PASSWORD=coursepass
+    volumes:
+      - course_db_data:/var/lib/mysql
+  course-service:
+    image: course-service:1.0
+    depends_on:
+      - course-db
+  enrollment-db: 
+   image: mariadb:10.5
+   environment:
+     - MARIADB_ROOT_PASSWORD=redhat
+     - MARIADB_DATABASE=enrollmentdb
+     - MARIADB_USER=enrolluser
+     - MARIADB_PASSWORD=enrollpass
+   volumes: 
+     - enrollment_db_data:/var/lib/mysql
+  enrollment-service:
+    image: enrollment-service:1.0
+    depends_on:
+      - enrollment-db
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8085:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: root
+volumes:
+  mariadb_data:
+  auth_db_data:
+  student_db_data:
+  course_db_data:
+  enrollment_db_data:
+  jenkins_home:
