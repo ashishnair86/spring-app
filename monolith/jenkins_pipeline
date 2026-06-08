@@ -1,0 +1,119 @@
+podTemplate(
+  cloud: 'openshift',
+  serviceAccount: 'jenkins-buildah',
+  containers: [
+
+    containerTemplate(
+      name: 'jnlp',
+      image: 'nexus-docker-cicd.apps.snomaster.lab/jenkins-agent:v1'
+    ),
+
+    containerTemplate(
+      name: 'buildah',
+      image: 'quay.io/buildah/stable:latest',
+      ttyEnabled: true,
+      command: 'sleep',
+      args: '99d',
+      privileged: true
+    )
+
+  ]
+) {
+
+node(POD_LABEL) {
+
+    environment {
+        REGISTRY = 'nexus-docker-cicd.apps.snomaster.lab'
+        IMAGE_NAME = 'university-monolith'
+        IMAGE_TAG = "${BUILD_NUMBER}"
+    }
+def REGISTRY = "nexus-docker-cicd.apps.snomaster.lab"
+def IMAGE_NAME = "university-monolith"
+def IMAGE_TAG = env.BUILD_NUMBER
+
+   stage('Checkout') {
+git branch: 'multi-stage',
+        credentialsId: 'git-creds',
+        url: 'https://github.com/ashishnair86/spring-app'
+}
+
+    stage('Maven Build') {
+        container('jnlp') {
+        sh '''
+        cd monolith
+        mvn clean package -DskipTests
+        '''
+    }
+    }
+
+    stage('Buildah Info') {
+        container('buildah') {
+            sh '''
+            id
+            buildah info
+            '''
+        }
+    }
+
+    stage('Build Image') {
+        container('buildah') {
+            sh """
+            cd monolith
+
+            buildah bud -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .
+            """
+        }
+    }
+
+    stage('Push Image') {
+
+        withCredentials([
+            usernamePassword(
+                credentialsId: 'nexus-creds',
+                usernameVariable: 'NEXUS_USER',
+                passwordVariable: 'NEXUS_PASS'
+            )
+        ]) {
+
+            container('buildah') {
+                sh """
+                buildah login \
+                  --tls-verify=false \
+                  -u $NEXUS_USER \
+                  -p $NEXUS_PASS \
+                  ${REGISTRY}
+
+                buildah push \
+                  --tls-verify=false \
+                  ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} \
+                  docker://${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
+                """
+            }
+        }
+    }
+
+    stage('Verify Image') {
+
+        withCredentials([
+            usernamePassword(
+                credentialsId: 'nexus-creds',
+                usernameVariable: 'NEXUS_USER',
+                passwordVariable: 'NEXUS_PASS'
+            )
+        ]) {
+
+            container('buildah') {
+                sh """
+                buildah login \
+                  --tls-verify=false \
+                  -u $NEXUS_USER \
+                  -p $NEXUS_PASS \
+                  ${REGISTRY}
+
+                buildah images
+                """
+            }
+        }
+    }
+}
+}
