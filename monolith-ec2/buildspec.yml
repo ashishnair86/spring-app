@@ -7,10 +7,11 @@ phases:
 
   build:
     commands:
+      - cd monolith-ec2
       - mvn clean package -DskipTests
 
 artifacts:
   files:
-    - target/*.jar
-    - appspec.yml
-    - scripts/**/*
+    - monolith-ec2/target/*.jar
+    - monolith-ec2/appspec.yml
+    - monolith-ec2/scripts/**/*
