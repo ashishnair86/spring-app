@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo systemctl start university
+sudo systemctl start myapp2

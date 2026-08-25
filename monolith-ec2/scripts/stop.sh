@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo systemctl stop university || true
+sudo systemctl stop myapp2 || true
