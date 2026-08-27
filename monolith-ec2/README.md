@@ -1,4 +1,4 @@
-# spring-app for university
+# spring-app
 This application is a monolithic backend service for a simple university system. It:
   
   •	Runs as one deployable application
