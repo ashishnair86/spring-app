@@ -8,3 +8,5 @@ This application is a monolithic backend service for a simple university system.
   •	Persists data in MariaDB
   
   •	Is internally structured by business domains
+  
+  - This is a test app
