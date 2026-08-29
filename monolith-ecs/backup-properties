@@ -1,0 +1,14 @@
+#spring.datasource.url=jdbc:mariadb://localhost:3306/university
+#spring.datasource.username=univuser
+#spring.datasource.password=password
+spring.config.import=aws-secretsmanager:my-app-secret
+spring.datasource.username=${db_username}
+spring.datasource.password=${db_password}
+
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.open-in-view=false
+
+server.port=8080

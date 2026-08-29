@@ -1,0 +1,39 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFULT_REGION: ap-south-1
+    ECR_REPO_URI: 579742341845.dkr.ecr.ap-south-1.amazonaws.com/university-monolith
+
+phases:
+
+  install:
+    runtime-versions:
+      java: corretto17
+
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region $AWS_DEFULT_REGION | docker login --username AWS --password-stdin 579742341845.dkr.ecr.ap-south-1.amazonaws.com
+
+  build:
+    commands:
+      - echo "Generating JAR"
+      - cd monolith-ec2
+      - mvn clean package -DskipTests
+
+      - export IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+
+      - echo "Building Docker image"
+      - docker build -t university-monolith .
+
+      - docker tag university-monolith:latest 579742341845.dkr.ecr.ap-south-1.amazonaws.com/university-monolith:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - docker push 579742341845.dkr.ecr.ap-south-1.amazonaws.com/university-monolith:$IMAGE_TAG
+
+      - printf '[{"name":"university-monolith","imageUri":"579742341845.dkr.ecr.ap-south-1.amazonaws.com/university-monolith:%s"}]' "$IMAGE_TAG" > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json

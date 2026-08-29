@@ -1,0 +1,53 @@
+version: '5.1'
+services:
+  gateway:
+    image: nginx:stable-alpine
+    ports: 
+      - "80:80" 
+    volumes: 
+      - /home/ec2-user/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - auth-service
+      - app
+  auth-db:
+    image: mariadb:10.5
+    environment:
+      MARIADB_ROOT_PASSWORD: authroot
+      MARIADB_DATABASE: authdb
+      MARIADB_USER: authuser
+      MARIADB_PASSWORD: authpass
+    volumes:
+      - auth_db_data:/var/lib/mysql
+
+  auth-service:
+    image: auth-service:4.0
+    depends_on:
+      - auth-db
+    ports:
+      - "8081:8080"
+
+  db: 
+   image: mariadb:10.5
+   environment:
+     - MARIADB_ROOT_PASSWORD=redhat
+     - MARIADB_DATABASE=university
+     - MARIADB_USER=univuser
+     - MARIADB_PASSWORD=password
+   volumes: 
+     - mariadb_data:/var/lib/mysql
+   ports:
+     - "3306:3306" 
+  app:
+   depends_on: 
+        - db
+   build: .
+   image: university-monolith:hostdb
+   environment:
+     - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/university
+     - SPRING_DATASOURCE_USERNAME=univuser
+     - SPRING_DATASOURCE_PASSWORD=password
+   ports:
+     - "8080:8080"
+volumes:
+  mariadb_data:
+  auth_db_data:

@@ -1,0 +1,17 @@
+spring.config.import=aws-secretsmanager:prod/spring-app/db, aws-parameterstore:/production/spring-app/
+spring.cloud.aws.region.static=ap-south-1
+
+spring.datasource.url=${db}
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.open-in-view=false
+
+logging.file.name=/opt/university-app/logs/application.log
+management.endpoints.web.exposure.include=*
+management.endpoint.health.show-details=always
+
+management.metrics.export.cloudwatch.enabled=true
+management.metrics.export.cloudwatch.namespace=UniversityApp
+management.metrics.export.cloudwatch.step=60s
+server.port=8080
