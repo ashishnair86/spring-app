@@ -1,0 +1,10 @@
+version: 0.0
+
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: taskdef.json
+        LoadBalancerInfo:
+          ContainerName: university-monolith
+          ContainerPort: 8080

@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    AWS_DEFULT_REGION: ap-south-1
+    AWS_DEFAULT_REGION: ap-south-1
     ECR_REPO_URI: 579742341845.dkr.ecr.ap-south-1.amazonaws.com/university-monolith
 
 phases:
@@ -31,9 +31,10 @@ phases:
   post_build:
     commands:
       - docker push 579742341845.dkr.ecr.ap-south-1.amazonaws.com/university-monolith:$IMAGE_TAG
+      - sed -i "s|IMAGE_PLACEHOLDER|579742341845.dkr.ecr.ap-south-1.amazonaws.com/university-monolith:$IMAGE_TAG|g" taskdef.json 
 
-      - printf '[{"name":"university-monolith","imageUri":"579742341845.dkr.ecr.ap-south-1.amazonaws.com/university-monolith:%s"}]' "$IMAGE_TAG" > imagedefinitions.json
 
 artifacts:
   files:
-    - monolith-ecs/imagedefinitions.json
+    - monolith-ecs/appspec.yml
+    - monolith-ecs/taskdef.json
