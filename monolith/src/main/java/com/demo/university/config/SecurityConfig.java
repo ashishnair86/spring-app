@@ -25,6 +25,7 @@ public class SecurityConfig {
             .formLogin(form -> form.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/", "/index.html", "/app.js", "/style.css").permitAll()
                 .anyRequest().authenticated()
             )
             // ✅ THIS IS THE KEY LINE

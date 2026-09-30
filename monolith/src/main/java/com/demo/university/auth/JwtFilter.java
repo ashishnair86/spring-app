@@ -1,5 +1,6 @@
 package com.demo.university.auth;
 
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,23 +28,26 @@ public class JwtFilter extends OncePerRequestFilter {
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
 
-            String username = JwtUtil.validateToken(token);
+            try {
+                String username = JwtUtil.validateToken(token);
 
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(
-                            username,
-                            null,
-                            Collections.emptyList()
-                    );
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                username,
+                                null,
+                                Collections.emptyList()
+                        );
 
-            authentication.setDetails(
-                    new WebAuthenticationDetailsSource()
-                            .buildDetails(request)
-            );
+                authentication.setDetails(
+                        new WebAuthenticationDetailsSource()
+                                .buildDetails(request)
+                );
 
-            // ✅ CRITICAL: set authentication ONCE
-            SecurityContextHolder.getContext()
-                    .setAuthentication(authentication);
+                SecurityContextHolder.getContext()
+                        .setAuthentication(authentication);
+            } catch (JwtException | IllegalArgumentException exception) {
+                SecurityContextHolder.clearContext();
+            }
         }
 
         filterChain.doFilter(request, response);

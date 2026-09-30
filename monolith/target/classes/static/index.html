@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17231f">
+    <title>Northstar | University API</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/app.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/" aria-label="Northstar home">
+            <span class="brand-mark" aria-hidden="true">N</span>
+            <span>Northstar<span class="brand-sub">UNIVERSITY API</span></span>
+        </a>
+        <div class="connection"><span class="connection-dot"></span><span id="connection-label">API at this origin</span></div>
+    </header>
+
+    <main class="layout">
+        <aside class="sidebar">
+            <div class="eyebrow">ACCESS</div>
+            <h1>Connect to your<br>university.</h1>
+            <p class="intro">Sign in or create an account to authorize requests to the university API.</p>
+
+            <form id="auth-form" class="auth-form">
+                <label for="username">Username</label>
+                <input id="username" name="username" autocomplete="username" required>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="current-password" required>
+                <div class="auth-actions">
+                    <button class="button button-primary" type="submit" data-auth-mode="login">Sign in</button>
+                    <button class="button button-quiet" type="button" id="register-button">Create account</button>
+                </div>
+            </form>
+
+            <div class="identity-block" aria-live="polite">
+                <div class="identity-label">SIGNED IN AS</div>
+                <div id="identity-name" class="identity-value">Not signed in</div>
+            </div>
+
+            <div class="token-block">
+                <div class="token-heading"><span>BEARER TOKEN</span><button type="button" class="text-button" id="clear-token">Clear</button></div>
+                <textarea id="token" rows="3" aria-label="JWT bearer token" placeholder="Sign in or paste a token" spellcheck="false"></textarea>
+                <div class="token-actions">
+                    <span id="token-state" class="token-state">Not connected</span>
+                    <button type="button" class="button button-outline" id="use-token">Use token</button>
+                </div>
+            </div>
+            <div id="notice" class="notice" role="status" aria-live="polite"></div>
+        </aside>
+
+        <section class="workspace" aria-label="API operations">
+            <div class="workspace-head">
+                <div><div class="eyebrow">WORKSPACE / API EXPLORER</div><h2>University operations</h2></div>
+                <span class="auth-badge" id="auth-badge"><span></span> JWT required</span>
+            </div>
+
+            <section class="operation">
+                <div class="section-title"><div><span class="method">GET</span><h3>Students</h3></div><button class="button button-outline" type="button" id="refresh-students">Refresh list</button></div>
+                <div id="students-results" class="result-list empty-state">Sign in to query students.</div>
+                <form id="student-form" class="inline-form">
+                    <div class="form-heading">Add student</div>
+                    <label>Name<input name="name" required></label>
+                    <label>Email<input name="email" type="email" required></label>
+                    <button class="button button-dark" type="submit">Create student <span aria-hidden="true">→</span></button>
+                </form>
+            </section>
+
+            <section class="operation">
+                <div class="section-title"><div><span class="method">GET</span><h3>Courses</h3></div><button class="button button-outline" type="button" id="refresh-courses">Refresh list</button></div>
+                <div id="courses-results" class="result-list empty-state">Sign in to query courses.</div>
+                <form id="course-form" class="inline-form">
+                    <div class="form-heading">Add course</div>
+                    <label>Course code<input name="code" required></label>
+                    <label>Title<input name="title" required></label>
+                    <button class="button button-dark" type="submit">Create course <span aria-hidden="true">→</span></button>
+                </form>
+            </section>
+
+            <section class="operation enrollment-operation">
+                <div class="section-title"><div><span class="method method-post">POST</span><h3>Enroll a student</h3></div></div>
+                <form id="enrollment-form" class="inline-form">
+                    <label>Student ID<input name="studentId" type="number" min="1" required></label>
+                    <label>Course ID<input name="courseId" type="number" min="1" required></label>
+                    <button class="button button-dark" type="submit">Create enrollment <span aria-hidden="true">→</span></button>
+                </form>
+                <pre id="enrollment-result" class="response-box" hidden></pre>
+            </section>
+            <footer>Requests are sent to <code id="api-origin"></code> with your bearer token.</footer>
+        </section>
+    </main>
+</body>
+</html>
