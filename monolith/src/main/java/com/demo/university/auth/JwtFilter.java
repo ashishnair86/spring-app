@@ -1,6 +1,7 @@
 package com.demo.university.auth;
 
 import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +16,11 @@ import java.io.IOException;
 import java.util.Collections;
 
 public class JwtFilter extends OncePerRequestFilter {
+    private final RevokedTokenRepository revokedTokens;
+
+    public JwtFilter(RevokedTokenRepository revokedTokens) {
+        this.revokedTokens = revokedTokens;
+    }
 
     @Override
     protected void doFilterInternal(
@@ -29,22 +35,24 @@ public class JwtFilter extends OncePerRequestFilter {
             String token = authHeader.substring(7);
 
             try {
-                String username = JwtUtil.validateToken(token);
-
-                UsernamePasswordAuthenticationToken authentication =
+                Claims claims = JwtUtil.validateToken(token);
+                String tokenId = claims.getId();
+                if (tokenId != null && !revokedTokens.existsById(tokenId)) {
+                    UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
-                                username,
-                                null,
-                                Collections.emptyList()
+                            claims.getSubject(),
+                            null,
+                            Collections.emptyList()
                         );
 
-                authentication.setDetails(
+                    authentication.setDetails(
                         new WebAuthenticationDetailsSource()
-                                .buildDetails(request)
-                );
+                            .buildDetails(request)
+                    );
 
-                SecurityContextHolder.getContext()
+                    SecurityContextHolder.getContext()
                         .setAuthentication(authentication);
+                }
             } catch (JwtException | IllegalArgumentException exception) {
                 SecurityContextHolder.clearContext();
             }

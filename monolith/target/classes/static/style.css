@@ -69,6 +69,7 @@ h1 { margin: 17px 0 12px; font: 700 29px/1.17 "Manrope", sans-serif; }
 .button-dark:hover { background: #315745; }
 
 .identity-block { margin-top: 21px; padding: 13px 0; border-top: 1px solid #ffffff25; border-bottom: 1px solid #ffffff25; }
+.identity-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .identity-label { color: #a9c7b4; font: 500 9px "DM Mono", monospace; }
 .identity-value { margin-top: 6px; color: white; font: 600 14px "Manrope", sans-serif; overflow-wrap: anywhere; }
 .token-block { margin-top: 34px; padding-top: 21px; border-top: 1px solid #ffffff25; }

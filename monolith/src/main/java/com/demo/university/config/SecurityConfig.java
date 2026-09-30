@@ -1,6 +1,7 @@
 package com.demo.university.config;
 
 import com.demo.university.auth.JwtFilter;
+import com.demo.university.auth.RevokedTokenRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,12 +12,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Bean
-    public JwtFilter jwtFilter() {
-        return new JwtFilter();
+    public JwtFilter jwtFilter(RevokedTokenRepository revokedTokens) {
+        return new JwtFilter(revokedTokens);
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http)
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwtFilter)
             throws Exception {
 
         http
@@ -24,13 +25,13 @@ public class SecurityConfig {
             .httpBasic(basic -> basic.disable())
             .formLogin(form -> form.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/auth/register", "/auth/login").permitAll()
                 .requestMatchers("/", "/index.html", "/app.js", "/style.css").permitAll()
                 .anyRequest().authenticated()
             )
             // ✅ THIS IS THE KEY LINE
             .addFilterBefore(
-                jwtFilter(),
+                jwtFilter,
                 UsernamePasswordAuthenticationFilter.class
             );
 

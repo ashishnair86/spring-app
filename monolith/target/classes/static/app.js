@@ -41,6 +41,7 @@ function setTokenState() {
     document.querySelector("#token-state").classList.toggle("is-ready", connected);
     document.querySelector("#auth-badge").classList.toggle("is-ready", connected);
     document.querySelector("#identity-name").textContent = username || (connected ? "Unknown token user" : "Not signed in");
+    document.querySelector("#sign-out").hidden = !connected;
 }
 
 async function request(path, options = {}) {
@@ -156,6 +157,16 @@ document.querySelector("#register-button").addEventListener("click", () => authe
 document.querySelector("#clear-token").addEventListener("click", () => {
     setToken("");
     setNotice("Token cleared from this browser.");
+});
+document.querySelector("#sign-out").addEventListener("click", async () => {
+    try {
+        await request("/auth/logout", { method: "POST" });
+        setNotice("Signed out. This token has been revoked.", "success");
+    } catch (error) {
+        setNotice(`Signed out locally, but server revocation failed: ${error.message}`, "error");
+    } finally {
+        setToken("");
+    }
 });
 document.querySelector("#use-token").addEventListener("click", () => {
     setToken(tokenField.value);

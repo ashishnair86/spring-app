@@ -1,10 +1,12 @@
 package com.demo.university.auth;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.UUID;
 
 public class JwtUtil {
 
@@ -20,6 +22,7 @@ public class JwtUtil {
 
     public static String generateToken(String username) {
         return Jwts.builder()
+                .id(UUID.randomUUID().toString())
                 .subject(username)
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + EXPIRATION))
@@ -27,12 +30,11 @@ public class JwtUtil {
                 .compact();
     }
 
-    public static String validateToken(String token) {
+        public static Claims validateToken(String token) {
         return Jwts.parser()
                 .verifyWith(key)   // ✅ FIXED
                 .build()
                 .parseSignedClaims(token)
-                .getPayload()
-                .getSubject();
+                                .getPayload();
     }
 }

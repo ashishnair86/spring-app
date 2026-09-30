@@ -3,6 +3,8 @@
 /Users/ashishnair/srebootcamp/spring-app/monolith/src/main/java/com/demo/university/auth/AuthService.java
 /Users/ashishnair/srebootcamp/spring-app/monolith/src/main/java/com/demo/university/auth/JwtFilter.java
 /Users/ashishnair/srebootcamp/spring-app/monolith/src/main/java/com/demo/university/auth/JwtUtil.java
+/Users/ashishnair/srebootcamp/spring-app/monolith/src/main/java/com/demo/university/auth/RevokedToken.java
+/Users/ashishnair/srebootcamp/spring-app/monolith/src/main/java/com/demo/university/auth/RevokedTokenRepository.java
 /Users/ashishnair/srebootcamp/spring-app/monolith/src/main/java/com/demo/university/auth/User.java
 /Users/ashishnair/srebootcamp/spring-app/monolith/src/main/java/com/demo/university/auth/UserRepository.java
 /Users/ashishnair/srebootcamp/spring-app/monolith/src/main/java/com/demo/university/common/ApiResponse.java
