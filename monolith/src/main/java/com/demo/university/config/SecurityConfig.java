@@ -27,6 +27,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/register", "/auth/login").permitAll()
                 .requestMatchers("/", "/index.html", "/app.js", "/style.css").permitAll()
+                .requestMatchers("/actuator/prometheus").permitAll()
                 .anyRequest().authenticated()
             )
             // ✅ THIS IS THE KEY LINE
