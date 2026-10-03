@@ -81,6 +81,16 @@
                 </form>
             </section>
 
+            <section class="operation">
+                <div class="section-title"><div><span class="method">GET</span><h3>Courses for a student</h3></div></div>
+                <form id="enrollment-query-form" class="inline-form enrollment-query-form">
+                    <div class="form-heading">Find a student's enrollments</div>
+                    <label>Student ID<input name="studentId" type="number" min="1" required></label>
+                    <button class="button button-dark" type="submit">Get courses <span aria-hidden="true">→</span></button>
+                </form>
+                <pre id="enrollment-query-result" class="response-box" hidden></pre>
+            </section>
+
             <section class="operation enrollment-operation">
                 <div class="section-title"><div><span class="method method-post">POST</span><h3>Enroll a student</h3></div></div>
                 <form id="enrollment-form" class="inline-form">

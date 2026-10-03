@@ -1,5 +1,8 @@
 package com.demo.university.enrollment;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,5 +24,10 @@ public class EnrollmentController {
             @RequestParam Long courseId) {
 
         return service.enroll(studentId, courseId);
+    }
+
+    @GetMapping
+    public List<Enrollment> findByStudent(@RequestParam Long studentId) {
+        return service.findByStudentId(studentId);
     }
 }

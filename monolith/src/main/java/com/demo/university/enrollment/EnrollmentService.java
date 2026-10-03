@@ -1,5 +1,7 @@
 package com.demo.university.enrollment;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.demo.university.course.Course;
@@ -37,6 +39,10 @@ public class EnrollmentService {
         enrollment.setCourse(course);
 
         return enrollmentRepository.save(enrollment);
+    }
+
+    public List<Enrollment> findByStudentId(Long studentId) {
+        return enrollmentRepository.findByStudent_Id(studentId);
     }
 }
 

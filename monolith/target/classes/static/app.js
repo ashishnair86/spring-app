@@ -182,6 +182,17 @@ document.querySelector("#course-form").addEventListener("submit", event => {
     event.preventDefault();
     submitJson(event.currentTarget, "/courses", loadCourses);
 });
+document.querySelector("#enrollment-query-form").addEventListener("submit", event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const params = new URLSearchParams(new FormData(form));
+    request(`/enrollments?${params}`).then(result => {
+        const output = document.querySelector("#enrollment-query-result");
+        output.textContent = JSON.stringify(result, null, 2);
+        output.hidden = false;
+        setNotice("Enrollment query completed.", "success");
+    }).catch(error => setNotice(error.message, "error"));
+});
 document.querySelector("#enrollment-form").addEventListener("submit", event => {
     event.preventDefault();
     const form = event.currentTarget;

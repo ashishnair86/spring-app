@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.demo.university.UniversityMonolithApplicationTests" time="4.907" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.demo.university.UniversityMonolithApplicationTests" time="3.778" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -14,7 +14,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk@21/21.0.12.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/ashishnair/srebootcamp/spring-app/monolith/target/surefire/surefirebooter-20261001200405207_3.jar /Users/ashishnair/srebootcamp/spring-app/monolith/target/surefire 2026-10-01T20-04-05_119-jvmRun1 surefire-20261001200405207_1tmp surefire_0-20261001200405207_2tmp"/>
+    <property name="sun.java.command" value="/Users/ashishnair/srebootcamp/spring-app/monolith/target/surefire/surefirebooter-20261003084853074_3.jar /Users/ashishnair/srebootcamp/spring-app/monolith/target/surefire 2026-10-03T08-48-53_017-jvmRun1 surefire-20261003084853074_1tmp surefire_0-20261003084853074_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="UniversityMonolithApplicationTests"/>
@@ -34,7 +34,7 @@
     <property name="FILE_LOG_CHARSET" value="UTF-8"/>
     <property name="java.awt.headless" value="true"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/ashishnair/srebootcamp/spring-app/monolith/target/surefire/surefirebooter-20261001200405207_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/ashishnair/srebootcamp/spring-app/monolith/target/surefire/surefirebooter-20261003084853074_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21.0.12.1"/>
@@ -54,7 +54,7 @@
     <property name="user.dir" value="/Users/ashishnair/srebootcamp/spring-app/monolith"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="PID" value="6747"/>
+    <property name="PID" value="4815"/>
     <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
     <property name="native.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/Users/ashishnair/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
@@ -66,9 +66,9 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="prometheusEndpointIsPublic" classname="com.demo.university.UniversityMonolithApplicationTests" time="0.487">
-    <system-out><![CDATA[20:04:05.886 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.demo.university.UniversityMonolithApplicationTests]: UniversityMonolithApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-20:04:05.972 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.demo.university.UniversityMonolithApplication for test class com.demo.university.UniversityMonolithApplicationTests
+  <testcase name="enrollmentQueryReturnsTheStudentCourse" classname="com.demo.university.UniversityMonolithApplicationTests" time="0.581">
+    <system-out><![CDATA[08:48:53.601 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.demo.university.UniversityMonolithApplicationTests]: UniversityMonolithApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+08:48:53.674 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.demo.university.UniversityMonolithApplication for test class com.demo.university.UniversityMonolithApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -79,18 +79,18 @@
 
  :: Spring Boot ::                (v3.5.0)
 
-2026-10-01T20:04:06.341+05:30  INFO 6747 --- [           main] c.d.u.UniversityMonolithApplicationTests : Starting UniversityMonolithApplicationTests using Java 21.0.12.1 with PID 6747 (started by ashishnair in /Users/ashishnair/srebootcamp/spring-app/monolith)
-2026-10-01T20:04:06.342+05:30  INFO 6747 --- [           main] c.d.u.UniversityMonolithApplicationTests : No active profile set, falling back to 1 default profile: "default"
-2026-10-01T20:04:07.231+05:30  INFO 6747 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-10-01T20:04:07.303+05:30  INFO 6747 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 5 JPA repository interfaces.
-2026-10-01T20:04:07.748+05:30  INFO 6747 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-10-01T20:04:07.783+05:30  INFO 6747 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.15.Final
-2026-10-01T20:04:07.805+05:30  INFO 6747 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-10-01T20:04:08.023+05:30  INFO 6747 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-10-01T20:04:08.046+05:30  INFO 6747 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-10-01T20:04:08.196+05:30  INFO 6747 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:university user=SA
-2026-10-01T20:04:08.198+05:30  INFO 6747 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-10-01T20:04:08.244+05:30  INFO 6747 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2026-10-03T08:48:53.928+05:30  INFO 4815 --- [           main] c.d.u.UniversityMonolithApplicationTests : Starting UniversityMonolithApplicationTests using Java 21.0.12.1 with PID 4815 (started by ashishnair in /Users/ashishnair/srebootcamp/spring-app/monolith)
+2026-10-03T08:48:53.929+05:30  INFO 4815 --- [           main] c.d.u.UniversityMonolithApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2026-10-03T08:48:54.464+05:30  INFO 4815 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-03T08:48:54.498+05:30  INFO 4815 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 5 JPA repository interfaces.
+2026-10-03T08:48:54.801+05:30  INFO 4815 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-03T08:48:54.834+05:30  INFO 4815 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.15.Final
+2026-10-03T08:48:54.856+05:30  INFO 4815 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-03T08:48:55.033+05:30  INFO 4815 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-03T08:48:55.049+05:30  INFO 4815 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-03T08:48:55.155+05:30  INFO 4815 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:university user=SA
+2026-10-03T08:48:55.156+05:30  INFO 4815 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-03T08:48:55.190+05:30  INFO 4815 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 2.3.232
@@ -98,7 +98,7 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-10-01T20:04:08.901+05:30  INFO 6747 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-03T08:48:55.711+05:30  INFO 4815 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: create table courses (id bigint generated by default as identity, code varchar(255), title varchar(255), primary key (id))
 Hibernate: create table enrollments (id bigint generated by default as identity, course_id bigint, student_id bigint, primary key (id))
 Hibernate: create table revoked_tokens (token_id varchar(36) not null, expires_at timestamp(6) with time zone not null, primary key (token_id))
@@ -108,20 +108,28 @@ Hibernate: alter table if exists users drop constraint if exists UKr43af9ap4edm4
 Hibernate: alter table if exists users add constraint UKr43af9ap4edm43mmtq01oddj6 unique (username)
 Hibernate: alter table if exists enrollments add constraint FKho8mcicp4196ebpltdn9wl6co foreign key (course_id) references courses
 Hibernate: alter table if exists enrollments add constraint FK8kf1u1857xgo56xbfmnif2c51 foreign key (student_id) references students
-2026-10-01T20:04:08.960+05:30  INFO 6747 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-10-01T20:04:09.258+05:30  WARN 6747 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+2026-10-03T08:48:55.756+05:30  INFO 4815 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-03T08:48:56.006+05:30  WARN 4815 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: 9623d95d-039e-405f-a60b-50e8a77ce02f
+Using generated security password: 35abcf65-71e9-4714-acc3-5c0f76263ac6
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-10-01T20:04:09.263+05:30  INFO 6747 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2026-10-01T20:04:09.328+05:30  INFO 6747 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2026-10-01T20:04:09.592+05:30  INFO 6747 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
-2026-10-01T20:04:09.953+05:30  INFO 6747 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2026-10-01T20:04:09.953+05:30  INFO 6747 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-10-01T20:04:09.954+05:30  INFO 6747 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2026-10-01T20:04:10.031+05:30  INFO 6747 --- [           main] c.d.u.UniversityMonolithApplicationTests : Started UniversityMonolithApplicationTests in 3.957 seconds (process running for 4.691)
+2026-10-03T08:48:56.010+05:30  INFO 4815 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-10-03T08:48:56.058+05:30  INFO 4815 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-10-03T08:48:56.259+05:30  INFO 4815 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-10-03T08:48:56.513+05:30  INFO 4815 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-03T08:48:56.513+05:30  INFO 4815 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-03T08:48:56.514+05:30  INFO 4815 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-03T08:48:56.584+05:30  INFO 4815 --- [           main] c.d.u.UniversityMonolithApplicationTests : Started UniversityMonolithApplicationTests in 2.83 seconds (process running for 3.419)
+Hibernate: insert into students (email,name,id) values (?,?,default)
+Hibernate: insert into courses (code,title,id) values (?,?,default)
+Hibernate: select s1_0.id,s1_0.email,s1_0.name from students s1_0 where s1_0.id=?
+Hibernate: select c1_0.id,c1_0.code,c1_0.title from courses c1_0 where c1_0.id=?
+Hibernate: insert into enrollments (course_id,student_id,id) values (?,?,default)
+Hibernate: select e1_0.id,e1_0.course_id,e1_0.student_id from enrollments e1_0 left join students s1_0 on s1_0.id=e1_0.student_id where s1_0.id=?
+Hibernate: select c1_0.id,c1_0.code,c1_0.title from courses c1_0 where c1_0.id=?
+Hibernate: select s1_0.id,s1_0.email,s1_0.name from students s1_0 where s1_0.id=?
 ]]></system-out>
     <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
 WARNING: A Java agent has been loaded dynamically (/Users/ashishnair/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.5/byte-buddy-agent-1.17.5.jar)
@@ -130,5 +138,7 @@ WARNING: If a serviceability tool is not in use, please run with -Djdk.instrumen
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
 ]]></system-err>
   </testcase>
+  <testcase name="prometheusEndpointIsPublic" classname="com.demo.university.UniversityMonolithApplicationTests" time="0.038"/>
   <testcase name="contextLoads" classname="com.demo.university.UniversityMonolithApplicationTests" time="0.004"/>
+  <testcase name="healthEndpointIsPublic" classname="com.demo.university.UniversityMonolithApplicationTests" time="0.018"/>
 </testsuite>

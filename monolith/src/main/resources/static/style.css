@@ -116,6 +116,7 @@ h1 { margin: 17px 0 12px; font: 700 29px/1.17 "Manrope", sans-serif; }
 .inline-form input { height: 37px; padding: 0 10px; color: var(--ink); border-color: var(--line); background: white; font-size: 11px; }
 .inline-form input:focus { border-color: #5f9674; outline: 2px solid #5f967420; }
 .inline-form .button { white-space: nowrap; }
+.enrollment-query-form { grid-template-columns: minmax(180px, 1fr) auto; }
 .enrollment-operation .inline-form { grid-template-columns: repeat(2, minmax(0, 1fr)) auto; margin-top: 0; }
 .response-box { overflow: auto; margin: 12px 0 0; padding: 12px; border: 1px solid var(--line); border-radius: 3px; background: #f3f6f2; color: #34453a; font: 10px/1.6 "DM Mono", monospace; }
 footer { padding-top: 18px; color: #75827a; font-size: 10px; }
