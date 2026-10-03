@@ -21,7 +21,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 		"spring.datasource.url=jdbc:h2:mem:university;MODE=MariaDB;DB_CLOSE_DELAY=-1",
 		"spring.datasource.username=sa",
 		"spring.datasource.password=",
-		"spring.datasource.driver-class-name=org.h2.Driver"
+		"spring.datasource.driver-class-name=org.h2.Driver",
+		"management.endpoints.web.exposure.include=health,prometheus"
 })
 @AutoConfigureMockMvc
 class UniversityMonolithApplicationTests {
