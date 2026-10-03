@@ -68,8 +68,6 @@ async function loadStudents() {
 
                 <td>${student.name}</td>
 
-                <td>${student.course}</td>
-
                 <td>${student.email}</td>
 
             </tr>
@@ -82,37 +80,51 @@ async function loadStudents() {
 
 
 
-async function addStudent(){
+async function addStudent(event) {
+    event.preventDefault();
 
-    const name=document.getElementById("name").value;
-
-    const course=document.getElementById("course").value;
-
-    const email=document.getElementById("email").value;
-
-    await fetch(API+"/students",{
-
-        method:"POST",
-
-        headers:{
-
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+token
-
+    const response = await fetch(API + "/students", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
         },
-
-        body:JSON.stringify({
-
-            name:name,
-            course:course,
-            email:email
-
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value
         })
-
     });
 
+    if (!response.ok) {
+        alert("Could not add student. Check your login and try again.");
+        return;
+    }
+
+    event.target.reset();
     alert("Student Added");
-
     loadStudents();
+}
 
+async function addCourse(event) {
+    event.preventDefault();
+
+    const response = await fetch(API + "/courses", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({
+            code: document.getElementById("courseCode").value,
+            title: document.getElementById("courseTitle").value
+        })
+    });
+
+    if (!response.ok) {
+        alert("Could not add course. Check your login and try again.");
+        return;
+    }
+
+    event.target.reset();
+    alert("Course Added");
 }

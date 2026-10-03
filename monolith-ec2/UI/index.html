@@ -39,7 +39,6 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Course</th>
                 <th>Email</th>
             </tr>
 
@@ -55,13 +54,21 @@
 
     <h2>Add Student</h2>
 
-    <input type="text" id="name" placeholder="Name">
+    <form id="studentForm" onsubmit="addStudent(event)">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Add Student</button>
+    </form>
 
-    <input type="text" id="course" placeholder="Course">
+    <hr>
 
-    <input type="email" id="email" placeholder="Email">
+    <h2>Add Course</h2>
 
-    <button onclick="addStudent()">Add Student</button>
+    <form id="courseForm" onsubmit="addCourse(event)">
+        <input type="text" id="courseCode" placeholder="Course Code" required>
+        <input type="text" id="courseTitle" placeholder="Course Title" required>
+        <button type="submit">Add Course</button>
+    </form>
 
 </div>
 
