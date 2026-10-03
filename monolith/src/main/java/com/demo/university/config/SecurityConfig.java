@@ -23,7 +23,7 @@ public class SecurityConfig {
     @Order(1)
     public SecurityFilterChain healthFilterChain(HttpSecurity http) throws Exception {
         http
-            .securityMatcher(EndpointRequest.to(HealthEndpoint.class))
+            .securityMatcher("/actuator/health", "/actuator/health/**")
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
 
